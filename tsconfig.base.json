@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@bofa/shadcn-ui": ["libs/shared/shadcn-ui/src/index.ts"],
+      "@bofa/shadcn-ui-components": [
+        "libs/shared/shadcn-ui-components/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

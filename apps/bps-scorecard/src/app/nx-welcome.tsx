@@ -5,6 +5,11 @@
  Delete this file and get started with your project!
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
+
+import {
+  Button,
+} from '@bofa/shadcn-ui-components';
+
 export function NxWelcome({ title }: { title: string }) {
   return (
     <>
@@ -434,10 +439,12 @@ export function NxWelcome({ title }: { title: string }) {
               <span> Hello there, </span>
               Welcome {title} 👋
             </h1>
+
           </div>
 
           <div id="hero" className="rounded">
             <div className="text-container">
+
               <h2>
                 <svg
                   fill="none"
@@ -456,6 +463,7 @@ export function NxWelcome({ title }: { title: string }) {
               </h2>
               <a href="#commands"> What&apos;s next? </a>
             </div>
+
             <div className="logo-container">
               <svg
                 fill="currentColor"
@@ -467,7 +475,7 @@ export function NxWelcome({ title }: { title: string }) {
               </svg>
             </div>
           </div>
-
+          <Button variant='destructive'>Careful Mosheeee!!</Button>
           <div id="middle-content">
             <div id="middle-content-container">
               <div id="learning-materials" className="rounded shadow">
