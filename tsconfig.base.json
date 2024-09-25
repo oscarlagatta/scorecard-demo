@@ -15,10 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bofa/dashboard": ["libs/bps-scorecard/features/dashboard/src/index.ts"],
+      "@bofa/data-access": ["libs/bps-scorecard/data-access/src/index.ts"],
+      "@bofa/layout": ["libs/bps-scorecard/layout/src/index.ts"],
       "@bofa/shadcn-ui": ["libs/shared/shadcn-ui/src/index.ts"],
       "@bofa/shadcn-ui-components": [
         "libs/shared/shadcn-ui-components/src/index.ts"
-      ]
+      ],
+      "@bofa/ui": ["libs/bps-scorecard/ui/src/index.ts"],
+      "@bofa/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

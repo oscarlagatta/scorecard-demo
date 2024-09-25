@@ -32,4 +32,7 @@ module.exports = {
       // svgr: false
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'], // Ensure resolve extensions are included
+  },
 };

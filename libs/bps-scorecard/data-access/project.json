@@ -1,0 +1,19 @@
+{
+  "name": "data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/bps-scorecard/data-access/src",
+  "projectType": "library",
+  "tags": ["scope=scorecard", "type=data-access"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/bps-scorecard/data-access",
+        "main": "libs/bps-scorecard/data-access/src/index.ts",
+        "tsConfig": "libs/bps-scorecard/data-access/tsconfig.lib.json",
+        "assets": ["libs/bps-scorecard/data-access/*.md"]
+      }
+    }
+  }
+}

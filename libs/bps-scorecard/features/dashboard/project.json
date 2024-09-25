@@ -1,0 +1,9 @@
+{
+  "name": "dashboard",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/bps-scorecard/features/dashboard/src",
+  "projectType": "library",
+  "tags": ["scope:frontend","type:feature"],
+  "// targets": "to see all targets run: nx show project dashboard --web",
+  "targets": {}
+}
