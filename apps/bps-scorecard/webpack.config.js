@@ -7,7 +7,7 @@ module.exports = {
     path: join(__dirname, '../../dist/apps/bps-scorecard'),
   },
   devServer: {
-    port: 3000,
+    port: 4200,
     historyApiFallback: {
       index: '/index.html',
       disableDotRule: true,

@@ -1,4 +1,4 @@
-import {FC, createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, FC, ReactNode, useContext, useState } from 'react';
 
 interface SidebarContextProps {
   isOpen: boolean;
@@ -9,9 +9,7 @@ const SidebarContext = createContext<SidebarContextProps | undefined>(
   undefined
 );
 
-export const SidebarProvider: FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const SidebarProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => setIsOpen((prev) => !prev);
@@ -30,4 +28,3 @@ export const useSidebar = (): SidebarContextProps => {
   }
   return context;
 };
-

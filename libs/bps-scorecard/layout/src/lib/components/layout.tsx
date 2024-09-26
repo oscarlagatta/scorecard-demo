@@ -1,4 +1,3 @@
-// libs/layout/src/components/Layout.tsx
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Footer, Header, Sidebar } from './index';
