@@ -5,7 +5,7 @@ import { SidebarProvider } from '../context/sidebar-context';
 
 export const Layout: FC = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="w-screen">
       <Header />
       <div className="flex flex-1">
         <SidebarProvider>
