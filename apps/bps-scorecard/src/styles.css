@@ -79,3 +79,18 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+@layer utilities {
+  .bg-pastel-blue {
+    @apply bg-blue-100;
+  }
+  .bg-pastel-green {
+    @apply bg-green-100;
+  }
+  .bg-pastel-yellow {
+    @apply bg-yellow-100;
+  }
+  .bg-pastel-pink {
+    @apply bg-pink-100;
+  }
+}
