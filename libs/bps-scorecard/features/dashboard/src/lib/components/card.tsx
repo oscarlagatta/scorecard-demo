@@ -16,7 +16,15 @@ const getCardClass = (title: string) => {
 };
 
 
-export const CardComponent = ({ title, children }: { title: string; children: React.ReactNode }) => (
+export const CardComponent = ({
+  title,
+  children,
+  svgPath
+}: {
+  title: string;
+  children: React.ReactNode;
+  svgPath: JSX.Element
+}) => (
   <Card className={getCardClass(title)}>
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
       <CardTitle className="text-sm font-medium">{title}</CardTitle>
@@ -30,11 +38,9 @@ export const CardComponent = ({ title, children }: { title: string; children: Re
         strokeWidth="2"
         className="h-4 w-4 text-muted-foreground"
       >
-        {/* SVG content goes here */}
+        {svgPath}
       </svg>
     </CardHeader>
-    <CardContent>
-      {children}
-    </CardContent>
+    <CardContent>{children}</CardContent>
   </Card>
 );
