@@ -1,57 +1,66 @@
-// libs/layout/src/components/Sidebar.tsx
+import { cn } from '@bofa/shadcn-ui';
+import { Button } from '@bofa/shadcn-ui-components';
+import {
+  ChartBarSquareIcon,
+  ArrowTrendingUpIcon,
+  ClipboardDocumentIcon,
+} from '@heroicons/react/24/solid';
+import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
-import { useSidebar } from '../context/sidebar-context';
-import { FC } from 'react';
-
-export const Sidebar: FC = () => {
-  const { isOpen, toggleSidebar } = useSidebar();
+export function Sidebar() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <>
-      {/* Toggle button for mobile */}
-      <button
-        className="md:hidden p-2 focus:outline-none"
-        onClick={toggleSidebar}
-        aria-label="Toggle Sidebar"
+    <aside
+      className={cn(
+        'bg-gray-900 text-white h-full p-4 flex-shrink-0',
+        isCollapsed ? 'w-16' : 'w-64'
+      )}
+    >
+      <Button
+        variant="ghost"
+        className="mb-6"
+        onClick={() => setIsCollapsed(!isCollapsed)}
       >
+        {isCollapsed ? 'Expand' : 'Collapse'}
+      </Button>
 
-        {/* Icon for toggle, e.g., hamburger */}☰
-      </button>
-      {/* Sidebar */}
-      <aside
-        className={`${
-          isOpen ? 'block' : 'hidden'
-        } md:block w-64 bg-gray-100 h-full p-4 transition-all duration-300`}
-      >
-        <ul>
-          <li>
-            <Link
-              to="/dashboard"
-              className="block py-2 px-3 text-gray-700 hover:bg-gray-200 rounded"
-            >
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/reports"
-              className="block py-2 px-3 text-gray-700 hover:bg-gray-200 rounded"
-            >
-              Reports
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/user-management"
-              className="block py-2 px-3 text-gray-700 hover:bg-gray-200 rounded"
-            >
-              User Management
-            </Link>
-          </li>
-          {/* Add more navigation links as needed */}
-        </ul>
-      </aside>
-    </>
+      {/* Navigation Items */}
+      <nav className="space-y-4">
+        <NavItem
+          label="Scorecard Dashboard"
+          icon={<ChartBarSquareIcon className="w-6 h-6" />}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          label="Performance Metrics"
+          icon={<ArrowTrendingUpIcon className="w-6 h-6" />}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          label="Reports"
+          icon={<ClipboardDocumentIcon className="w-6 h-6" />}
+          isCollapsed={isCollapsed}
+        />
+      </nav>
+    </aside>
   );
-};
+}
+
+// NavItem Component
+function NavItem({
+  label,
+  icon,
+  isCollapsed,
+}: {
+  label: string;
+  icon: JSX.Element;
+  isCollapsed: boolean;
+}) {
+  return (
+    <div className="flex items-center space-x-4 p-2 rounded hover:bg-gray-700 transition">
+      {icon}
+      {!isCollapsed && <span>{label}</span>}
+    </div>
+  );
+}
