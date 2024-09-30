@@ -12,3 +12,7 @@ export * from './drop-down';
 // export * from './calendar';
 export * from './card';
 export * from './tabs';
+export * from './badge';
+export * from './checkbox';
+export * from './separator';
+export * from './table';
