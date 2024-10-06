@@ -30,6 +30,29 @@ const TaskDetails = lazy(() =>
   }))
 );
 
+const Additional = lazy(() =>
+  import('@bofa/metric-inventory').then((module) => ({
+    default: module.Additional,
+  }))
+);
+
+const Deliverables = lazy(() =>
+  import('@bofa/metric-inventory').then((module) => ({
+    default: module.Deliverables,
+  }))
+);
+
+const Issues = lazy(() =>
+  import('@bofa/metric-inventory').then((module) => ({
+    default: module.Issues,
+  }))
+);
+
+const Overview = lazy(() =>
+  import('@bofa/metric-inventory').then((module) => ({
+    default: module.Overview,
+  }))
+);
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -79,7 +102,7 @@ export const router = createBrowserRouter(
               path="overview"
               element={
                 <Suspense fallback={<div>Loading...</div>}>
-                  {/*<Overview />*/}
+                  <Overview />
                 </Suspense>
               }
             />
@@ -87,7 +110,7 @@ export const router = createBrowserRouter(
               path="deliverables"
               element={
                 <Suspense fallback={<div>Loading...</div>}>
-                  {/*<Deliverables />*/}
+                  <Deliverables />
                 </Suspense>
               }
             />
@@ -95,7 +118,7 @@ export const router = createBrowserRouter(
               path="issues"
               element={
                 <Suspense fallback={<div>Loading...</div>}>
-                  {/*<Issues />*/}
+                  <Issues />
                 </Suspense>
               }
             />
@@ -103,7 +126,7 @@ export const router = createBrowserRouter(
               path="additional"
               element={
                 <Suspense fallback={<div>Loading...</div>}>
-                  {/*<Additional />*/}
+                  <Additional />
                 </Suspense>
               }
             />

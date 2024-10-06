@@ -27,16 +27,14 @@ export function TaskDetails() {
   if (!task) return <div>Task not found</div>;
 
   return (
-    <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
+    <div className="hidden h-full flex-1 flex-col space-y-8  md:flex">
       <div className="flex items-center justify-between space-y-2">
         <div>
           {/*<h2 className="text-2xl font-bold tracking-tight">Task Details</h2>*/}
           <Button onClick={handleBackClick}>Back to Tasks</Button>
-          <h2 className=" text-2xl font-bold tracking-tight text-muted-foreground">
-            Detailed information about task #{id} #{task.title}
-          </h2>
+
         </div>
-        <div className="flex items-center space-x-2">{/*<UserNav />*/}</div>
+        {/*<div className="flex items-center space-x-2">/!*<UserNav />*!/</div>*/}
       </div>
       <div className="flex-1 space-y-4 ">
         <Tabs defaultValue="overview" className="space-y-4">
@@ -61,7 +59,7 @@ export function TaskDetails() {
             </TabsTrigger>
           </TabsList>
 
-          <Outlet />
+          <Outlet context={task}/>
         </Tabs>
       </div>
     </div>
