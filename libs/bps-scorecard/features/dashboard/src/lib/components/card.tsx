@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@bofa/shadcn-ui-components';
+import { ReactElement, ReactNode } from 'react';
 
 const getCardClass = (title: string) => {
   switch (title) {
@@ -15,15 +16,14 @@ const getCardClass = (title: string) => {
   }
 };
 
-
 export const CardComponent = ({
   title,
   children,
   svgPath
 }: {
   title: string;
-  children: React.ReactNode;
-  svgPath: JSX.Element
+  children: ReactNode;
+  svgPath: ReactElement
 }) => (
   <Card className={getCardClass(title)}>
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

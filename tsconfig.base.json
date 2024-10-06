@@ -19,6 +19,12 @@
       "@bofa/dashboard": ["libs/bps-scorecard/features/dashboard/src/index.ts"],
       "@bofa/data-access": ["libs/bps-scorecard/data-access/src/index.ts"],
       "@bofa/layout": ["libs/bps-scorecard/layout/src/index.ts"],
+      "@bofa/layout-scorecard": [
+        "libs/bps-scorecard/layout-scorecard/src/index.ts"
+      ],
+      "@bofa/metric-inventory": [
+        "libs/bps-scorecard/features/metric-inventory/src/index.ts"
+      ],
       "@bofa/playground": ["libs/playground/src/index.ts"],
       "@bofa/shadcn-ui": ["libs/shared/shadcn-ui/src/index.ts"],
       "@bofa/shadcn-ui-components": [

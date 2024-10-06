@@ -1,0 +1,9 @@
+{
+  "name": "layout-scorecard",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/bps-scorecard/layout-scorecard/src",
+  "projectType": "library",
+  "tags": ["scope:scorecard", "type:layout"],
+  "// targets": "to see all targets run: nx show project layout-scorecard --web",
+  "targets": {}
+}
