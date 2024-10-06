@@ -6,25 +6,23 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@bofa/shadcn-ui-components';
-
-import { labels } from '../../data/data';
 import { taskSchema } from '../../data/schema';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
+  onCopy: (id: string) => void;
 }
 
 export function DataTableRowActions<TData>({
   row,
+  onEdit,
+  onDelete,
+  onCopy,
 }: DataTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original);
 
@@ -40,24 +38,16 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.label}>
-              {labels.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem>View</DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onEdit(task.id)}>
+          Edit
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onCopy(task.id)}>
+          Copy
+          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem onSelect={() => onDelete(task.id)}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>

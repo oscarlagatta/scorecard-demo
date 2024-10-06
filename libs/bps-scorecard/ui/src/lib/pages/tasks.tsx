@@ -1,13 +1,31 @@
-import { columns } from '../components/data-table/columns';
 import { DataTable } from '../components/data-table/data-table';
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import data from '../data/tasks.json';
 import { Task } from '../data/schema';
+import { createColumns } from '../components/data-table/columns';
 
 export function Tasks() {
   const [tasks, setTasks] = useState<Task[]>();
+
+  const navigate = useNavigate();
+
+  const handleEdit = (id: string) => {
+    console.log('handleEdit', id);
+    navigate(`edit/${id}`);
+  };
+  const handleCopy = (id: string) => {
+    console.log(id);
+    return null;
+  };
+  const handleDelete = (id: string) => {
+    console.log(id);
+    return null;
+  };
+
+  const columns = createColumns(handleEdit, handleDelete, handleCopy);
 
   useEffect(() => {
     setTasks(data);

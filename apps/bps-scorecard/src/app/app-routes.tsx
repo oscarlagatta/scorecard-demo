@@ -24,6 +24,13 @@ const MetricInventory = lazy(() =>
   }))
 );
 
+const TaskDetails = lazy(() =>
+  import('@bofa/ui').then((module) => ({
+    default: module.TaskDetails,
+  }))
+);
+
+
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -43,19 +50,123 @@ export const router = createBrowserRouter(
             </Suspense>
           }
         />
-        <Route path="inventory" element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <MetricInventory />
-          </Suspense>
-        } />
-        {/* Optionally, you can redirect to a default tab */}
+        <Route path="inventory">
+          <Route
+            index
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <MetricInventory />
+              </Suspense>
+            }
+          />
+          <Route
+            path="create"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                {/*<CreateInventoryItem />*/}
+              </Suspense>
+            }
+          />
+          <Route
+            path="edit/:id"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <TaskDetails />
+              </Suspense>
+            }
+          >
+            <Route
+              path="overview"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  {/*<Overview />*/}
+                </Suspense>
+              }
+            />
+            <Route
+              path="deliverables"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  {/*<Deliverables />*/}
+                </Suspense>
+              }
+            />
+            <Route
+              path="issues"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  {/*<Issues />*/}
+                </Suspense>
+              }
+            />
+            <Route
+              path="additional"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  {/*<Additional />*/}
+                </Suspense>
+              }
+            />
+            <Route index element={<Navigate to="overview" replace />} />
+          </Route>
+        </Route>
         <Route index element={<Navigate to="dashboard" replace />} />
       </Route>
-      {/* Optionally, you can redirect to the scorecard */}
       <Route index element={<Navigate to="/scorecard/dashboard" replace />} />
     </Route>
   )
 );
+// export const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path="/" element={<Layout />}>
+//       <Route
+//         path="scorecard"
+//         element={
+//           <Suspense fallback={<div>Loading...</div>}>
+//             <LayoutScorecard />
+//           </Suspense>
+//         }
+//       >
+//         <Route
+//           path="dashboard"
+//           element={
+//             <Suspense fallback={<div>Loading...</div>}>
+//               <Dashboard />
+//             </Suspense>
+//           }
+//         />
+//         <Route path="inventory">
+//           <Route
+//             index
+//             element={
+//               <Suspense fallback={<div>Loading...</div>}>
+//                 <MetricInventory />
+//               </Suspense>
+//             }
+//           />
+//           <Route
+//             path="create"
+//             element={
+//               <Suspense fallback={<div>Loading...</div>}>
+//                 {/*<CreateInventoryItem />*/}
+//               </Suspense>
+//             }
+//           />
+//           <Route
+//             path="edit/:id"
+//             element={
+//               <Suspense fallback={<div>Loading...</div>}>
+//                 <TaskDetails />
+//               </Suspense>
+//             }
+//           />
+//         </Route>
+//         <Route index element={<Navigate to="dashboard" replace />} />
+//       </Route>
+//       <Route index element={<Navigate to="/scorecard/dashboard" replace />} />
+//     </Route>
+//   )
+// );
 
 export const AppRoutes = () => {
   return <RouterProvider router={router} />;
