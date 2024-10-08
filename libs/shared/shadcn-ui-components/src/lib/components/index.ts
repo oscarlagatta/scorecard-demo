@@ -20,3 +20,4 @@ export * from './form';
 export * from './toast';
 export * from './toaster';
 export * from './textarea';
+export * from './navigation-menu';

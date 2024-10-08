@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { Layout } from '@bofa/layout';
+import {DemoPage} from '@bofa/playground';
 
 // Lazy loaded components
 const LayoutScorecard = lazy(() =>
@@ -79,6 +80,7 @@ export const router = createBrowserRouter(
             element={
               <Suspense fallback={<div>Loading...</div>}>
                 <MetricInventory />
+                {/*<DemoPage />*/}
               </Suspense>
             }
           />
