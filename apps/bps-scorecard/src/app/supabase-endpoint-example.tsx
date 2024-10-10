@@ -1,37 +1,18 @@
-import { useEffect, useState } from 'react';
-import { supabaseInstance, useMetrics } from '@bofa/data-access';
+import { useMetrics } from '@bofa/data-access';
 
 interface Metric {
   id: string;
   name: string;
   description: string;
+  category: string;
+  unit: string | null;
+  min_value: number | null;
+  max_value: number | null;
+  weight: number;
 }
 
 export default function SupabaseEndpointExample() {
-  // const [metrics, setMetrics] = useState<Metric[]>([])
-
-  const { metrics, isLoading, error } = useMetrics();
-  //
-  // useEffect(() => {
-  //   fetchMetrics()
-  // }, [])
-
-  // const fetchMetrics = async () => {
-  //   try {
-  //     setLoading(true)
-  //     const response = await supabaseInstance.get('/metric_inventory', {
-  //       params: {
-  //         select: '*',
-  //         order: 'name.asc',
-  //       },
-  //     })
-  //     setMetrics(response.data)
-  //   } catch (err) {
-  //     setError(err instanceof Error ? err.message : 'An unknown error occurred')
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
+  const { metrics, isLoading } = useMetrics();
 
   if (isLoading)
     return <div className="text-center p-4">Loading metrics...</div>;
@@ -44,7 +25,7 @@ export default function SupabaseEndpointExample() {
         Metrics (using TanStack Query)
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {metrics?.map((metric: any) => (
+        {metrics?.map((metric: Metric) => (
           <div key={metric.id} className="bg-white shadow-md rounded-lg p-4">
             <h2 className="text-xl font-semibold mb-2">{metric.name}</h2>
             <p className="text-gray-600 mb-2">{metric.description}</p>
