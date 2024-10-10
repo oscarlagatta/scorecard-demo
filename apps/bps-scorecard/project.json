@@ -3,7 +3,73 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/bps-scorecard/src",
   "projectType": "application",
-  "tags": ["scope=scorecard,type=app"],
+  "tags": [
+    "scope=scorecard,type=app"
+  ],
   "// targets": "to see all targets run: nx show project bps-scorecard --web",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/bps-scorecard",
+        "index": "apps/bps-scorecard/src/index.html",
+        "baseHref": "/",
+        "main": "apps/bps-scorecard/src/main.tsx",
+        "tsConfig": "apps/bps-scorecard/tsconfig.app.json",
+        "assets": [
+          "apps/bps-scorecard/src/favicon.ico",
+          "apps/bps-scorecard/src/assets"
+        ],
+        "styles": [
+          "apps/bps-scorecard/src/styles.css"
+        ],
+        "scripts": [],
+        "webpackConfig": "@nx/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/bps-scorecard/src/environments/environment.ts",
+              "with": "apps/bps-scorecard/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bps-scorecard:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bps-scorecard:build:development"
+        },
+        "production": {
+          "buildTarget": "bps-scorecard:build:production",
+          "hmr": false
+        }
+      }
+    }
+  }
 }

@@ -1,3 +1,8 @@
+export const PROJECT_URL = 'https://ymvbjlrrwdgkfllcezzw.supabase.co';
+export const API_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InltdmJqbHJyd2Rna2ZsbGNlenp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjg1ODg1MzYsImV4cCI6MjA0NDE2NDUzNn0.8WyLEQvSby5XL2oohBJGf1QGHggTbP5bS1MSAroHYpw';
+
 export function utils(): string {
   return 'utils';
 }
+

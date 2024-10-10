@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { Layout } from '@bofa/layout';
 import {DemoPage} from '@bofa/playground';
+import SupabaseEndpointExample from './supabase-endpoint-example';
 
 // Lazy loaded components
 const LayoutScorecard = lazy(() =>
@@ -71,6 +72,7 @@ export const router = createBrowserRouter(
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <Dashboard />
+              <SupabaseEndpointExample/>
             </Suspense>
           }
         />
