@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@bofa/dashboard": ["libs/bps-scorecard/features/dashboard/src/index.ts"],
-      "@bofa/data-access": ["libs/bps-scorecard/data-access/src/index.ts"],
+      "@bofa/data-services": ["libs/shared/data-services/src/index.ts"],
+      "@bofa/environments": ["libs/shared/environments/src/index.ts"],
       "@bofa/layout": ["libs/bps-scorecard/layout/src/index.ts"],
       "@bofa/layout-scorecard": [
         "libs/bps-scorecard/layout-scorecard/src/index.ts"
@@ -31,7 +32,7 @@
         "libs/shared/shadcn-ui-components/src/index.ts"
       ],
       "@bofa/ui": ["libs/bps-scorecard/ui/src/index.ts"],
-      "@bofa/utils": ["libs/shared/utils/src/index.ts"]
+      "@bofa/utilities": ["libs/shared/utilities/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

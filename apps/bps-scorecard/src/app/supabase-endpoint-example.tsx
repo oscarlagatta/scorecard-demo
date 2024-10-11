@@ -1,4 +1,4 @@
-import { useMetrics } from '@bofa/data-access';
+import { useMetrics } from '@bofa/data-services';
 
 interface Metric {
   id: string;
