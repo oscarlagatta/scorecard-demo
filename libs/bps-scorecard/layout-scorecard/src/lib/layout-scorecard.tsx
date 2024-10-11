@@ -24,6 +24,9 @@ export function LayoutScorecard() {
           <TabsTrigger value="inventory" onClick={() => navigate('inventory')}>
             Metric Inventory
           </TabsTrigger>
+          <TabsTrigger value="inventory" onClick={() => navigate('metric-management')}>
+            Metric Management
+          </TabsTrigger>
 
         </TabsList>
 

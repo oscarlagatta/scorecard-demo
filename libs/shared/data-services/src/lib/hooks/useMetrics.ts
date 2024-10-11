@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Metric } from '../models/metric';
 import { supabaseInstance } from '@bofa/utilities';
 
-const fetchMetric = async (): Promise<Metric[]> => {
+const fetchMetric: () => Promise<Metric[]> = async (): Promise<Metric[]> => {
   const { data } = await supabaseInstance.get('/metric_inventory', {
     params: {
       select: '*',

@@ -1,0 +1,9 @@
+{
+  "name": "data-services",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/data-services/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:data-services"],
+  "// targets": "to see all targets run: nx show project data-services --web",
+  "targets": {}
+}

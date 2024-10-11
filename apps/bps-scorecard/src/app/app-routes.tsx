@@ -7,10 +7,14 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { Layout } from '@bofa/layout';
-import {DemoPage} from '@bofa/playground';
-import SupabaseEndpointExample from './supabase-endpoint-example';
 
 // Lazy loaded components
+
+const MetricInventoryCRUD = lazy(() =>
+  import('@bofa/metric-inventory').then((module) => ({
+    default: module.MetricInventoryCRUD
+  }))
+);
 const LayoutScorecard = lazy(() =>
   import('@bofa/layout-scorecard').then((module) => ({
     default: module.LayoutScorecard,
@@ -72,7 +76,7 @@ export const router = createBrowserRouter(
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <Dashboard />
-              <SupabaseEndpointExample/>
+
             </Suspense>
           }
         />
@@ -137,6 +141,14 @@ export const router = createBrowserRouter(
             <Route index element={<Navigate to="overview" replace />} />
           </Route>
         </Route>
+        <Route
+          path="metric-management"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <MetricInventoryCRUD />
+            </Suspense>
+          }
+        />
         <Route index element={<Navigate to="dashboard" replace />} />
       </Route>
       <Route index element={<Navigate to="/scorecard/dashboard" replace />} />
