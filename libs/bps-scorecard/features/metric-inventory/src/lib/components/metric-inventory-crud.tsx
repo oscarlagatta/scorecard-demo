@@ -33,6 +33,7 @@ import {
   TableRow,
   toast,
 } from '@bofa/shadcn-ui-components';
+import { Edit3, Trash2 } from 'lucide-react';
 
 // Define types for our data structures
 interface Metric {
@@ -224,6 +225,9 @@ function MetricsTable() {
   const queryClient = useQueryClient();
   const [editingMetric, setEditingMetric] = useState<Metric | null>(null);
   const [open, setOpen] = useState(false);
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+  const [deletingMetric, setDeletingMetric] = useState<string | null>(null);
+
   const {
     data: metrics,
     isLoading,
@@ -232,6 +236,7 @@ function MetricsTable() {
     queryKey: ['metrics'],
     queryFn: fetchMetrics,
   });
+
   const addMetricMutation = useMutation({
     mutationFn: addMetric,
     onSuccess: () => {
@@ -240,6 +245,7 @@ function MetricsTable() {
       setOpen(false);
     },
   });
+
   const updateMetricMutation = useMutation({
     mutationFn: updateMetric,
     onSuccess: () => {
@@ -248,19 +254,24 @@ function MetricsTable() {
       setEditingMetric(null);
     },
   });
+
   const deleteMetricMutation = useMutation({
     mutationFn: deleteMetric,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['metrics'] });
       toast({ title: 'Metric deleted successfully' });
+      setDeletingMetric(null);
+      setConfirmDialogOpen(false);
     },
   });
+
   if (isLoading)
     return <div className="text-center p-4">Loading metrics...</div>;
   if (error)
     return (
       <div className="text-center p-4 text-red-500">Error: {error.message}</div>
     );
+
   return (
     <div className="mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Metrics Management</h1>
@@ -305,7 +316,7 @@ function MetricsTable() {
                       className="mr-2"
                       onClick={() => setEditingMetric(metric)}
                     >
-                      Edit
+                      <Edit3 />
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
@@ -327,15 +338,46 @@ function MetricsTable() {
                 </Dialog>
                 <Button
                   variant="destructive"
-                  onClick={() => deleteMetricMutation.mutate(metric.id)}
+                  onClick={() => {
+                    setDeletingMetric(metric.id);
+                    setConfirmDialogOpen(true);
+                  }}
                 >
-                  Delete
+                  <Trash2 />
                 </Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+      <Dialog open={confirmDialogOpen} onOpenChange={setConfirmDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Deletion</DialogTitle>
+          </DialogHeader>
+          <div className="mb-4">Are you sure you want to delete this metric?</div>
+          <div className="flex justify-end">
+            <Button
+              variant="outline"
+              className="mr-2"
+              onClick={() => setConfirmDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                if (deletingMetric) {
+                  deleteMetricMutation.mutate(deletingMetric);
+                }
+              }}
+            >
+              Yes, Delete
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
