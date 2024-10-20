@@ -1,10 +1,7 @@
-import { DataTable } from '../components/data-table/data-table';
-
 import { useMetricsData } from '@bofa/data-services';
-import { createColumnsMetric } from '../components/data-table/columns-metric';
-import { useDrawer } from '../contexts';
-import { Button } from '@bofa/shadcn-ui-components';
-import { DrawerLayout } from '../components';
+import { DataTable, DrawerLayout, useDrawer } from '@bofa/ui';
+import { createColumnsMetric } from '../components/columns-metric';
+import MetricForm from '../forms/metric-form';
 
 export function Metrics() {
   const { metrics } = useMetricsData();
@@ -12,25 +9,9 @@ export function Metrics() {
 
   const handleEdit = (id: number) => {
     console.log('handleEdit', id);
-    // navigate(`edit/${id}`);
     openDrawer(
-      <div className="p-4">
-        <h2 className="text-lg font-semibold mb-4">Edit Metric {id}</h2>
-        <form>
-          <input
-            type="text"
-            placeholder="Name"
-            className="w-full p-2 mb-2 border rounded"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full p-2 mb-2 border rounded"
-          />
-          <Button type="submit" className="w-full">
-            Update
-          </Button>
-        </form>
+      <div className="p-2">
+        <MetricForm />
       </div>
     );
   };
