@@ -1,0 +1,444 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ScorecardAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/metrics/{id}": {
+      "get": {
+        "tags": [
+          "MetricsHandler"
+        ],
+        "operationId": "GetMetric",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "tags": [
+          "MetricsHandler"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MetricsHandler"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricForCreationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MetricsHandler"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricForUpdateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MetricsHandler"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/metrics/{metricName}": {
+      "get": {
+        "tags": [
+          "MetricsHandler"
+        ],
+        "parameters": [
+          {
+            "name": "metricName",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MetricDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "metricTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runFrequencyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runDay": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAlignmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataGranularityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "consequenceEligible": {
+            "type": "boolean"
+          },
+          "metricCalculation": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueType": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalInformation": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricForCreationDto": {
+        "required": [
+          "metricPrefixId",
+          "name",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "metricPrefixId": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 4000,
+            "type": "string",
+            "nullable": true
+          },
+          "metricTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runFrequencyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runDay": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAlignmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataGranularityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "consequenceEligible": {
+            "type": "boolean"
+          },
+          "metricCalculation": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueType": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalInformation": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "createdUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "metricOwnerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "metricAlignmentIdentifierId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricForUpdateDto": {
+        "required": [
+          "metricPrefixId",
+          "name",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "metricPrefixId": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 4000,
+            "type": "string",
+            "nullable": true
+          },
+          "metricTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runFrequencyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runDay": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceAlignmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataGranularityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "consequenceEligible": {
+            "type": "boolean"
+          },
+          "metricCalculation": {
+            "type": "string",
+            "nullable": true
+          },
+          "valueType": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalInformation": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "createdUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "metricOwnerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "metricAlignmentIdentifierId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

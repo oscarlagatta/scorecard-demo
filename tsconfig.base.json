@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bofa/api-services": ["libs/bps-scorecard/api-services/src/index.ts"],
       "@bofa/dashboard": ["libs/bps-scorecard/features/dashboard/src/index.ts"],
       "@bofa/data-services": ["libs/shared/data-services/src/index.ts"],
       "@bofa/environments": ["libs/shared/environments/src/index.ts"],

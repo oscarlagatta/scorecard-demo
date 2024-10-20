@@ -8,11 +8,12 @@ import {
 } from 'react-router-dom';
 import { Layout } from '@bofa/layout';
 
+
 // Lazy loaded components
 
 const MetricInventoryCRUD = lazy(() =>
   import('@bofa/metric-inventory').then((module) => ({
-    default: module.MetricInventoryCRUD
+    default: module.MetricInventoryCRUDv2
   }))
 );
 const LayoutScorecard = lazy(() =>
