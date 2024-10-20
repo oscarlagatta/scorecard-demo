@@ -21,3 +21,5 @@ export * from './toast';
 export * from './toaster';
 export * from './textarea';
 export * from './navigation-menu';
+export * from './sheet';
+export { Toaster } from './sonner';

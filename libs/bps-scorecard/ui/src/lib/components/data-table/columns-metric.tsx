@@ -1,11 +1,15 @@
 import { ColumnDef } from '@tanstack/react-table';
 
-import { Checkbox } from '@bofa/shadcn-ui-components';
+import { Button, Checkbox } from '@bofa/shadcn-ui-components';
 
 import { DataTableColumnHeader } from './data-table-column-header';
 import { MetricDto } from '@bofa/api-services';
+import { Edit3, Trash2 } from 'lucide-react';
+import React from 'react';
 
-export const createColumnsMetric = (): ColumnDef<MetricDto>[] => [
+export const createColumnsMetric = (
+  onEdit: (id: number) => void
+): ColumnDef<MetricDto>[] => [
   {
     id: 'select',
     header: ({ table }) => (
@@ -131,16 +135,16 @@ export const createColumnsMetric = (): ColumnDef<MetricDto>[] => [
     ),
     cell: ({ row }) => (
       <span className="max-w-[500px] truncate font-medium">
-      {new Date(row.getValue('createdDateTime')).toLocaleString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      })}
-    </span>
+        {new Date(row.getValue('createdDateTime')).toLocaleString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        })}
+      </span>
     ),
   },
   {
@@ -157,16 +161,31 @@ export const createColumnsMetric = (): ColumnDef<MetricDto>[] => [
     ),
     cell: ({ row }) => (
       <span className="max-w-[500px] truncate font-medium">
-      {new Date(row.getValue('updatedDateTime')).toLocaleString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      })}
-    </span>
+        {new Date(row.getValue('updatedDateTime')).toLocaleString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        })}
+      </span>
+    ),
+  },
+  {
+    id: 'actions',
+    cell: ({ row }) => (
+      <>
+        <Button variant="outline" className="mr-2" onClick={() => onEdit(1)}>
+          <Edit3 className="w-4 h-4 mr-2" />
+          Edit
+        </Button>
+        <Button variant="destructive">
+          <Trash2 className="w-4 h-4 mr-2" />
+          Remove
+        </Button>
+      </>
     ),
   },
   // {
